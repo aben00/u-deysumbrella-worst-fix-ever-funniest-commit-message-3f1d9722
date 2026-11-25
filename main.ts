@@ -11,12 +11,20 @@ const OUTPUT_DIR = "/output";
 const OUTPUT_FILE = join(OUTPUT_DIR, "entry.txt");
 
 // Fragments of the commit subject, in order. Joining with single spaces
-// keeps the line exactly one line with no trailing whitespace.
+// keeps the line exactly one line with no trailing whitespace. The em dash
+// is part of the joke's rhythm: setup, beat, punchline.
 const fragments: string[] = [
   "fix: silence the 3am pager",
   "by deleting the alert",
   "— slept great, learned of the outage on Twitter",
 ];
+
+// Every fragment must carry words; an empty one would hide a double space.
+for (const part of fragments) {
+  if (part.trim().length === 0) {
+    fail("a fragment is empty");
+  }
+}
 
 const message = fragments.join(" ");
 
